@@ -1710,24 +1710,10 @@
                 const portfolioItem = this.closest('.portfolio-item');
                 const img = portfolioItem.querySelector('.portfolio-image img');
                 
-                if (img && img.src) {
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt || 'Portfolio image';
-                    
-                    // Handle image loading errors in lightbox
-                    lightboxImg.onerror = function() {
-                        //console.error('Failed to load lightbox image:', this.src);
-                        closeLightbox();
-                        //alert('Failed to load the image. Please try again.');
-                    };
-                    
-                    lightboxImg.onload = function() {
-                        lightbox.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    };
-                } else {
-                    console.error('No image found for lightbox');
-                }
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
         });
         
