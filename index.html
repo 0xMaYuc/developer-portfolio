@@ -3,7 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sebastian - Shopify Expert Developer</title>
+    <title>Sebastian Käufer - Shopify Expert Developer | Custom Themes & E-commerce Solutions</title>
+    <meta name="description" content="Shopify Expert Developer specializing in custom themes, Liquid programming, and high-converting e-commerce stores. Transform your Shopify store with professional development services.">
+    <meta name="keywords" content="Shopify developer, Shopify expert, custom Shopify themes, Liquid programming, e-commerce development, Shopify Plus, Shopify store optimization">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sebastian.dev/">
+    <meta property="og:title" content="Sebastian Käufer - Shopify Expert Developer">
+    <meta property="og:description" content="Transform your Shopify store with custom themes, advanced Liquid solutions, and conversion optimization. Shopify Expert with proven results.">
+    <meta property="og:image" content="https://sebastian.dev/assets/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sebastian.dev/">
+    <meta property="twitter:title" content="Sebastian Käufer - Shopify Expert Developer">
+    <meta property="twitter:description" content="Transform your Shopify store with custom themes, advanced Liquid solutions, and conversion optimization.">
+    <meta property="twitter:image" content="https://sebastian.dev/assets/og-image.jpg">
+    
+    <!-- Preload font for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
         * {
             margin: 0;
@@ -150,6 +170,14 @@
         }
 
         .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--shopify-green);
+        }
+        
+        .nav-links a.active::after {
             width: 100%;
         }
 
@@ -438,6 +466,40 @@
             gap: 40px;
             margin-top: 60px;
         }
+        
+        /* Image loading states */
+        .portfolio-image {
+            background: linear-gradient(135deg, rgba(150, 191, 72, 0.2), rgba(92, 106, 196, 0.2));
+        }
+        
+        .portfolio-image img {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .portfolio-image img.loaded {
+            opacity: 1;
+        }
+        
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: skeleton-loading 1.5s infinite;
+        }
+        
+        .portfolio-image.image-loaded::before {
+            display: none;
+        }
+        
+        @keyframes skeleton-loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
 
         .portfolio-item {
             background: rgba(255, 255, 255, 0.03);
@@ -462,7 +524,7 @@
             height: 250px;
             background: linear-gradient(135deg, rgba(150, 191, 72, 0.2), rgba(92, 106, 196, 0.2));
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             font-size: 2rem;
             position: relative;
@@ -473,6 +535,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
         }
 
         .portfolio-overlay {
@@ -487,6 +550,11 @@
             justify-content: center;
             opacity: 0;
             transition: opacity 0.5s;
+            cursor: pointer;
+        }
+        
+        .portfolio-overlay span {
+            pointer-events: none;
         }
 
         .portfolio-item:hover .portfolio-overlay {
@@ -580,10 +648,6 @@
             font-size: 2.5rem;
             margin-bottom: 25px;
             display: inline-block;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: transform 0.3s;
         }
         
         .service-card:hover .service-icon {
@@ -603,6 +667,92 @@
             font-size: 0.95rem;
         }
 
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 4rem;
+            color: var(--shopify-green);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(150, 191, 72, 0.3);
+        }
+        
+        .testimonial-content {
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .author-name {
+            font-size: 1.1rem;
+            color: var(--shopify-green);
+            margin-bottom: 5px;
+        }
+        
+        .author-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .testimonial-rating {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-card {
+                padding: 30px;
+            }
+            
+            .testimonial-text {
+                font-size: 1rem;
+            }
+        }
+        
         /* Contact Section */
         .contact {
             background: linear-gradient(135deg, rgba(150, 191, 72, 0.1), rgba(92, 106, 196, 0.1));
@@ -1003,20 +1153,99 @@
             font-size: 0.9rem;
             color: var(--shopify-green);
         }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: zoom-out;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 50px rgba(150, 191, 72, 0.3);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 3rem;
+            color: var(--text);
+            cursor: pointer;
+            z-index: 2001;
+            transition: transform 0.3s, color 0.3s;
+            font-weight: 300;
+            line-height: 1;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+        
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+            color: var(--shopify-green);
+        }
+        
+        @media (max-width: 768px) {
+            .lightbox-close {
+                top: 10px;
+                right: 20px;
+                font-size: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="bg-animation"></div>
+    
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" aria-label="Close image viewer">&times;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
 
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Sebastian.dev</a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" aria-label="Navigate to home section">Home</a></li>
+                <li><a href="#skills" aria-label="Navigate to skills section">Skills</a></li>
+                <li><a href="#portfolio" aria-label="Navigate to portfolio section">Portfolio</a></li>
+                <li><a href="#services" aria-label="Navigate to services section">Services</a></li>
+                <li><a href="#contact" aria-label="Navigate to contact section">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -1095,124 +1324,123 @@
     <section id="portfolio" class="section fade-in">
         <h2 class="section-title">Recent Shopify Projects</h2>
         <div class="portfolio-grid">
+            <article class="portfolio-item">
+                <figure class="portfolio-image">
+                    <img src="assets/magniflex-final.jpg" alt="Magniflex premium mattress store homepage showing luxury bedding products with custom variant selector" loading="lazy">
+                    <div class="portfolio-overlay" role="button" aria-label="View Magniflex project details in lightbox" tabindex="0">
+                        <span style="color: white; font-size: 1.2rem;">View Details →</span>
+                    </div>
+                </figure>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Premium Mattress E-commerce Store</h3>
+                    <p class="portfolio-description">
+                        Designed and developed a sophisticated custom product page for a luxury mattress brand featuring dynamic variant selection, interactive product galleries, and seamless user experience.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Custom Product Page</span>
+                        <span class="tag">E-commerce UX</span>
+                        <span class="tag">Liquid Logic</span>
+                        <span class="tag">Conversion Focus</span>
+                    </div>
+                </div>
+            </article>
+            
             <div class="portfolio-item">
                 <div class="portfolio-image">
-                    <img src="https://via.placeholder.com/400x250/96bf48/ffffff?text=Fashion+Store" alt="Fashion Store">
+                    <img src="assets/auora-size-guide-final.jpg" alt="Auora lingerie size guide with interactive measurement instructions and EU/US conversion tables" loading="lazy">
                     <div class="portfolio-overlay">
                         <span style="color: white; font-size: 1.2rem;">View Details →</span>
                     </div>
                 </div>
                 <div class="portfolio-content">
-                    <h3 class="portfolio-title">Luxury Fashion Brand</h3>
+                    <h3 class="portfolio-title">Fashion & Lingerie Store</h3>
                     <p class="portfolio-description">
-                        Custom theme with advanced product filtering, size charts, and 3D product viewer. 
-                        Achieved 40% increase in conversion rate.
+                       Created custom size guide functionality with interactive measuring instructions, multi-size conversion tables (EU/US), and localized German content. 
                     </p>
                     <div class="portfolio-tags">
-                        <span class="tag">Custom Theme</span>
-                        <span class="tag">Liquid</span>
-                        <span class="tag">3D Viewer</span>
+                        <span class="tag">Fashion E-commerce</span>
+                        <span class="tag">Custom Tables</span>
+                        <span class="tag">UX Optimization</span>
                     </div>
                 </div>
             </div>
             
             <div class="portfolio-item">
                 <div class="portfolio-image">
-                    <img src="https://via.placeholder.com/400x250/5c6ac4/ffffff?text=Electronics+Store" alt="Electronics Store">
+                    <img src="assets/asal-nahrungsmittel-final.jpg" alt="Asal Nahrungsmittel recipe platform with dynamic portion calculator and ingredient shopping integration" loading="lazy">
                     <div class="portfolio-overlay">
                         <span style="color: white; font-size: 1.2rem;">View Details →</span>
                     </div>
                 </div>
                 <div class="portfolio-content">
-                    <h3 class="portfolio-title">Tech Electronics Store</h3>
+                    <h3 class="portfolio-title">Recipe & Ingredient E-commerce Platform</h3>
                     <p class="portfolio-description">
-                        Shopify Plus migration with custom checkout, multi-currency support, and advanced inventory management.
+                       Developed an interactive recipe platform with dynamic portion calculator and ingredient-to-cart functionality. Customers can adjust servings with real-time updates and purchase ingredients directly from recipes. 
                     </p>
                     <div class="portfolio-tags">
-                        <span class="tag">Shopify Plus</span>
-                        <span class="tag">Migration</span>
-                        <span class="tag">Custom Checkout</span>
+                        <span class="tag">Recipe Platform</span>
+                        <span class="tag">Portion Calculator</span>
+                        <span class="tag">Custom Liquid Logic</span>
                     </div>
                 </div>
             </div>
             
             <div class="portfolio-item">
                 <div class="portfolio-image">
-                    <img src="https://via.placeholder.com/400x250/96bf48/ffffff?text=Beauty+Brand" alt="Beauty Brand">
+                    <img src="assets/purestream-final4.jpg" alt="PureStream automatic free gift selector popup with cart threshold monitoring" loading="lazy">
                     <div class="portfolio-overlay">
                         <span style="color: white; font-size: 1.2rem;">View Details →</span>
                     </div>
                 </div>
                 <div class="portfolio-content">
-                    <h3 class="portfolio-title">Beauty & Cosmetics Brand</h3>
+                    <h3 class="portfolio-title">Automatic Free Gift Selector System</h3>
                     <p class="portfolio-description">
-                        Subscription-based store with quiz builder, personalized recommendations, and loyalty program integration.
+                   Built a smart cart-monitoring system featuring automatic threshold detection and instant gift popup triggers. Custom JavaScript integration with Shopify's Cart API enables seamless gift selection, discount application, and real-time cart updates.
                     </p>
                     <div class="portfolio-tags">
-                        <span class="tag">Subscriptions</span>
-                        <span class="tag">Quiz Builder</span>
-                        <span class="tag">ReCharge</span>
+                        <span class="tag">Free Gift System</span>
+                        <span class="tag">Cart Monitoring</span>
+                        <span class="tag">Auto Discount</span>
                     </div>
                 </div>
             </div>
             
             <div class="portfolio-item">
                 <div class="portfolio-image">
-                    <img src="https://via.placeholder.com/400x250/5c6ac4/ffffff?text=Food+Store" alt="Food Store">
+                    <img src="assets/ovatime-landing-page-final.webp" alt="OvaTime football training app landing page with dark UI and mobile mockups" loading="lazy">
                     <div class="portfolio-overlay">
                         <span style="color: white; font-size: 1.2rem;">View Details →</span>
                     </div>
                 </div>
                 <div class="portfolio-content">
-                    <h3 class="portfolio-title">Gourmet Food Marketplace</h3>
+                    <h3 class="portfolio-title">Custom Landing Page</h3>
                     <p class="portfolio-description">
-                        Multi-vendor marketplace with complex shipping zones, bulk ordering, and wholesale functionality.
+                       Designed and developed a high-converting landing page for a football training app featuring modern dark UI, interactive mobile mockups, and seamless Shopify store integration.
                     </p>
                     <div class="portfolio-tags">
-                        <span class="tag">Marketplace</span>
-                        <span class="tag">B2B</span>
-                        <span class="tag">Wholesale</span>
+                        <span class="tag">Custom Landing Page</span>
+                        <span class="tag">Dark UI Design</span>
+                        <span class="tag">Mobile-First</span>
                     </div>
                 </div>
             </div>
             
             <div class="portfolio-item">
                 <div class="portfolio-image">
-                    <img src="https://via.placeholder.com/400x250/96bf48/ffffff?text=Fitness+Store" alt="Fitness Store">
+                    <img src="assets/panoptic-final.webp" alt="Panoptic luxury vintage eyewear e-commerce with premium mobile-first design" loading="lazy">
                     <div class="portfolio-overlay">
                         <span style="color: white; font-size: 1.2rem;">View Details →</span>
                     </div>
                 </div>
                 <div class="portfolio-content">
-                    <h3 class="portfolio-title">Fitness Equipment Store</h3>
+                    <h3 class="portfolio-title">Luxury Vintage Eyewear E-commerce</h3>
                     <p class="portfolio-description">
-                        Custom product configurator, AR visualization, and integrated booking system for consultations.
+                       Created a premium mobile-first experience for a luxury vintage eyewear brand featuring sophisticated product storytelling, multiple shopping pathways, and brand heritage focus.
                     </p>
                     <div class="portfolio-tags">
-                        <span class="tag">AR Features</span>
-                        <span class="tag">Configurator</span>
-                        <span class="tag">Booking</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="portfolio-item">
-                <div class="portfolio-image">
-                    <img src="https://via.placeholder.com/400x250/5c6ac4/ffffff?text=Jewelry+Store" alt="Jewelry Store">
-                    <div class="portfolio-overlay">
-                        <span style="color: white; font-size: 1.2rem;">View Details →</span>
-                    </div>
-                </div>
-                <div class="portfolio-content">
-                    <h3 class="portfolio-title">Luxury Jewelry Brand</h3>
-                    <p class="portfolio-description">
-                        High-end theme with zoom features, ring size guide, and custom engraving options. 
-                        Page speed score: 95+.
-                    </p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Performance</span>
-                        <span class="tag">Customization</span>
-                        <span class="tag">UX Design</span>
+                        <span class="tag">Luxury E-commerce</span>
+                        <span class="tag">Brand Storytelling</span>
+                        <span class="tag">Mobile UX</span>
                     </div>
                 </div>
             </div>
@@ -1273,6 +1501,71 @@
         </div>
     </section>
 
+    <section id="testimonials" class="section fade-in">
+        <h2 class="section-title">Client Testimonials</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"We made a complete new theme, based on Dawn. I gave Sebastian a lot of different 'conversion' templates and he made it so perfect that I am really speechless! The way Sebastian worked was awesome. Even if we had small bugs, he gave 100% to get a solution for that. Very calm, polite and solution oriented. Thanks much! I am very happy to have such a good Shopify coder in my network now."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4 class="author-name">Mik</h4>
+                        <p class="author-title">🇩🇪 Germany</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Outstanding Shopify Coding Service! Absolutely impressed! The work was delivered super fast, highly professional, and tailored exactly to my needs. Communication was smooth and every detail was perfectly handled. My Shopify store is now running flawlessly and looks amazing. Highly recommended – a solid 10 out of 10!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4 class="author-name">Philipp</h4>
+                        <p class="author-title">🇨🇭 Switzerland</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"I am convinced this guy is a magician of Shopify because we tried to solve a problem for 7 hours (and we're devs ourselves) and he solved in 30 minutes. Thanks so much for your skills!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4 class="author-name">Gonmra</h4>
+                        <p class="author-title">🇨🇳 China</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Sebastian K exceeded expectations in maintaining my website with unparalleled professionalism and meticulous attention to detail. His dedication shone through as he went ABOVE AND BEYOND to ensure everything ran smoothly. Highly recommended! 🙌"</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4 class="author-name">HAKIN</h4>
+                        <p class="author-title">🇸🇬 Singapore</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="section fade-in">
         <div class="contact">
             <h2 class="section-title">Let's Build Your Shopify Success</h2>
@@ -1282,8 +1575,16 @@
             </p>
             <div class="contact-links">
                 <a href="https://www.fiverr.com/sebastian__de" class="contact-link" target="_blank">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13.639,11.928h-0.954c0.06-1.243,0.149-2.233,0.149-2.233s-1.108-0.158-1.567-0.158c-0.298,0-0.478,0.119-0.478,0.318c0,0.328,0.149,1.313,0.188,2.073H9.54c-0.02-0.67-0.069-1.243-0.069-1.741c0-1.355,0.727-2.077,2.036-2.077c0.995,0,2.035,0.268,2.035,0.268s-0.129,1.848-0.228,3.55h1.569v1.409h-1.603c-0.04,0.995-0.04,1.994-0.04,2.99c0,1.016,0,2.031,0.04,3.046h-1.459c0.04-1.016,0.04-2.03,0.04-3.046c0-0.995,0-1.994-0.04-2.99H9.619v-1.409H11.8v0.02L11.8,11.928z M16.076,8.901c0-0.382,0.31-0.692,0.692-0.692s0.692,0.31,0.692,0.692s-0.31,0.692-0.692,0.692C16.387,9.593,16.076,9.283,16.076,8.901z M16.076,10.973h1.385v6.919h-1.385V10.973z M21.237,10.771c0.976,0,1.767,0.79,1.767,1.766c0,0.04,0,0.08-0.002,0.119h0.002v5.236h-1.385v-5.039c0-0.214-0.174-0.388-0.388-0.388s-0.388,0.174-0.388,0.388v5.039h-1.385v-5.236h0.002c-0.001-0.04-0.002-0.079-0.002-0.119C19.47,11.561,20.261,10.771,21.237,10.771z M12,2C6.477,2,2,6.477,2,12s4.477,10,10,10s10-4.477,10-10S17.523,2,12,2z M12,20.5c-4.694,0-8.5-3.806-8.5-8.5S7.306,3.5,12,3.5s8.5,3.806,8.5,8.5S16.694,20.5,12,20.5z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 508.02 508.02" width="24" height="24">
+                        <defs>
+                            <style>
+                                .fiverr-circle{fill:var(--shopify-green);}
+                                .fiverr-text{fill:var(--dark);}
+                            </style>
+                        </defs>
+                        <circle class="fiverr-circle" cx="254.01" cy="254.01" r="254.01"/>
+                        <circle class="fiverr-text" cx="315.97" cy="162.19" r="26.87"/>
+                        <path class="fiverr-text" d="M345.87,207.66h-123V199.6c0-15.83,15.83-16.13,23.89-16.13,9.25,0,13.44.9,13.44.9v-43.6a155.21,155.21,0,0,0-19.71-1.19c-25.68,0-73.16,7.16-73.16,61.51V208h-22.4v40.31h22.4v85.1h-20.9v40.31H247.34V333.37H222.85v-85.1H290v85.1H269.13v40.31h97.65V333.37H345.87Z" transform="translate(-1.83 -0.98)"/>
                     </svg>
                     Hire on Fiverr
                 </a>
@@ -1299,11 +1600,11 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Sebastian - Shopify Expert Developer | Building E-commerce Success Stories</p>
+        <p>&copy; 2025 Sebastian Käufer - Shopify Expert Developer | Building E-commerce Success Stories</p>
     </footer>
 
     <script>
-        // Navbar scroll effect
+        // Navbar scroll effect and active state
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -1311,7 +1612,35 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+            
+            // Update active navigation state
+            updateActiveNavigation();
         });
+        
+        // Function to update active navigation state
+        function updateActiveNavigation() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Initial check for active state
+        updateActiveNavigation();
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1369,12 +1698,95 @@
             observer.observe(el);
         });
 
-        // Portfolio hover effects
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // You can add modal functionality here or link to case studies
-                console.log('Portfolio item clicked');
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        
+        // Open lightbox when clicking on portfolio overlay
+        document.querySelectorAll('.portfolio-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const portfolioItem = this.closest('.portfolio-item');
+                const img = portfolioItem.querySelector('.portfolio-image img');
+                
+                if (img && img.src) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt || 'Portfolio image';
+                    
+                    // Handle image loading errors in lightbox
+                    lightboxImg.onerror = function() {
+                        console.error('Failed to load lightbox image:', this.src);
+                        closeLightbox();
+                        alert('Failed to load the image. Please try again.');
+                    };
+                    
+                    lightboxImg.onload = function() {
+                        lightbox.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    };
+                } else {
+                    console.error('No image found for lightbox');
+                }
             });
+        });
+        
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                lightboxImg.src = '';
+            }, 300);
+        }
+        
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Keyboard navigation improvements
+        document.addEventListener('keydown', function(e) {
+            // Close lightbox with Escape key
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+            
+            // Enable Enter/Space key for portfolio overlays
+            if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('portfolio-overlay')) {
+                e.preventDefault();
+                e.target.click();
+            }
+        });
+        
+        // Enable keyboard navigation for portfolio overlays
+        document.querySelectorAll('.portfolio-overlay').forEach(overlay => {
+            overlay.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+        
+        // Image loading states
+        document.querySelectorAll('.portfolio-image img').forEach(img => {
+            if (img.complete) {
+                img.classList.add('loaded');
+                img.closest('.portfolio-image').classList.add('image-loaded');
+            } else {
+                img.addEventListener('load', function() {
+                    this.classList.add('loaded');
+                    this.closest('.portfolio-image').classList.add('image-loaded');
+                });
+                
+                img.addEventListener('error', function() {
+                    this.closest('.portfolio-image').classList.add('image-loaded');
+                    console.error('Failed to load image:', this.src);
+                });
+            }
         });
 
         // Add counting animation for stats
