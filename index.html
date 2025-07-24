@@ -1716,9 +1716,9 @@
                     
                     // Handle image loading errors in lightbox
                     lightboxImg.onerror = function() {
-                        console.error('Failed to load lightbox image:', this.src);
+                        //console.error('Failed to load lightbox image:', this.src);
                         closeLightbox();
-                        alert('Failed to load the image. Please try again.');
+                        //alert('Failed to load the image. Please try again.');
                     };
                     
                     lightboxImg.onload = function() {
